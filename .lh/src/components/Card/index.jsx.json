@@ -1,0 +1,142 @@
+{
+    "sourceFile": "src/components/Card/index.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 31,
+            "patches": [
+                {
+                    "date": 1755840894409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1757863619966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import plus from \"@/assets/plus.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n+import styles from './Card.module.scss';\r\n \r\n+\r\n function Card(props) {\r\n   return (\r\n     <div className=\"card\">\r\n       <div className=\"favorite\">\r\n"
+                },
+                {
+                    "date": 1757863778740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n import plus from \"@/assets/plus.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n import styles from './Card.module.scss';\r\n \r\n+console.log(styles);\r\n \r\n+\r\n function Card(props) {\r\n   return (\r\n     <div className=\"card\">\r\n       <div className=\"favorite\">\r\n"
+                },
+                {
+                    "date": 1757863835234,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \r\n \r\n function Card(props) {\r\n   return (\r\n-    <div className=\"card\">\r\n+    <div className={styles.card}>\r\n       <div className=\"favorite\">\r\n         <img src={heartUnliked} alt=\"Unliked\" />\r\n       </div>\r\n       <img width={133} height={112} src={props.imageUrl} alt=\"Sneakers\" />\r\n"
+                },
+                {
+                    "date": 1757863855649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \r\n function Card(props) {\r\n   return (\r\n     <div className={styles.card}>\r\n-      <div className=\"favorite\">\r\n+      <div className={styles.favorite}>\r\n         <img src={heartUnliked} alt=\"Unliked\" />\r\n       </div>\r\n       <img width={133} height={112} src={props.imageUrl} alt=\"Sneakers\" />\r\n       <h5>{props.title}</h5>\r\n"
+                },
+                {
+                    "date": 1757864020131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,22 +4,22 @@\n \r\n console.log(styles);\r\n \r\n \r\n-function Card(props) {\r\n+function Card({title, price, imageUrl, onClick}) {\r\n   return (\r\n     <div className={styles.card}>\r\n       <div className={styles.favorite}>\r\n         <img src={heartUnliked} alt=\"Unliked\" />\r\n       </div>\r\n-      <img width={133} height={112} src={props.imageUrl} alt=\"Sneakers\" />\r\n-      <h5>{props.title}</h5>\r\n+      <img width={133} height={112} src={imageUrl} alt=\"Sneakers\" />\r\n+      <h5>{title}</h5>\r\n       <div className=\"d-flex justify-between align-center\">\r\n         <div className=\"d-flex flex-column\">\r\n           <span>Цена:</span>\r\n-          <b>{props.price}</b>\r\n+          <b>{price}</b>\r\n         </div>\r\n-        <button className=\"button\" onClick={props.onClick}>\r\n+        <button className=\"button\" onClick={onClick}>\r\n           <img width={11} height={11} src={plus} alt=\"Plus\" />\r\n         </button>\r\n       </div>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1757864645622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       <img width={133} height={112} src={imageUrl} alt=\"Sneakers\" />\r\n       <h5>{title}</h5>\r\n       <div className=\"d-flex justify-between align-center\">\r\n         <div className=\"d-flex flex-column\">\r\n-          <span>Цена:</span>\r\n+          <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n         <button className=\"button\" onClick={onClick}>\r\n           <img width={11} height={11} src={plus} alt=\"Plus\" />\r\n"
+                },
+                {
+                    "date": 1757865874247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,16 @@\n import heartUnliked from \"@/assets/heart.svg\";\r\n import styles from './Card.module.scss';\r\n \r\n console.log(styles);\r\n+let count = 4;\r\n \r\n+--count;\r\n \r\n+console.log(count);\r\n+\r\n+\r\n+\r\n function Card({title, price, imageUrl, onClick}) {\r\n   return (\r\n     <div className={styles.card}>\r\n       <div className={styles.favorite}>\r\n"
+                },
+                {
+                    "date": 1757865886274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n console.log(styles);\r\n let count = 4;\r\n \r\n---count;\r\n+count--;\r\n \r\n console.log(count);\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1757866480791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,26 @@\n+import plus from \"@/assets/plus.svg\";\r\n+import heartUnliked from \"@/assets/heart.svg\";\r\n+import styles from './Card.module.scss';\r\n+\r\n+function Card({title, price, imageUrl, onClick}) {\r\n+  return (\r\n+    <div className={styles.card}>\r\n+      <div className={styles.favorite}>\r\n+        <img src={heartUnliked} alt=\"Unliked\" />\r\n+      </div>\r\n+      <img width={133} height={112} src={imageUrl} alt=\"Sneakers\" />\r\n+      <h5>{title}</h5>\r\n+      <div className=\"d-flex justify-between align-center\">\r\n+        <div className=\"d-flex flex-column\">\r\n+          <span>Price:</span>\r\n+          <b>{price}</b>\r\n+        </div>\r\n+        <button className=\"button\" onClick={onClick}>\r\n+          <img width={11} height={11} src={plus} alt=\"Plus\" />\r\n+        </button>\r\n+      </div>\r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default Card;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1757992263999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import plus from \"@/assets/plus.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n import styles from './Card.module.scss';\r\n+import 'macro-css'\r\n \r\n function Card({title, price, imageUrl, onClick}) {\r\n   return (\r\n     <div className={styles.card}>\r\n@@ -22,40 +23,5 @@\n     </div>\r\n   )\r\n }\r\n \r\n-export default Card;\n-import plus from \"@/assets/plus.svg\";\r\n-import heartUnliked from \"@/assets/heart.svg\";\r\n-import styles from './Card.module.scss';\r\n-\r\n-console.log(styles);\r\n-let count = 4;\r\n-\r\n-count--;\r\n-\r\n-console.log(count);\r\n-\r\n-\r\n-\r\n-function Card({title, price, imageUrl, onClick}) {\r\n-  return (\r\n-    <div className={styles.card}>\r\n-      <div className={styles.favorite}>\r\n-        <img src={heartUnliked} alt=\"Unliked\" />\r\n-      </div>\r\n-      <img width={133} height={112} src={imageUrl} alt=\"Sneakers\" />\r\n-      <h5>{title}</h5>\r\n-      <div className=\"d-flex justify-between align-center\">\r\n-        <div className=\"d-flex flex-column\">\r\n-          <span>Price:</span>\r\n-          <b>{price}</b>\r\n-        </div>\r\n-        <button className=\"button\" onClick={onClick}>\r\n-          <img width={11} height={11} src={plus} alt=\"Plus\" />\r\n-        </button>\r\n-      </div>\r\n-    </div>\r\n-  )\r\n-}\r\n-\r\n export default Card;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1757995666443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import plus from \"@/assets/plus.svg\";\r\n+import plus from \"@/assets/btn-plus.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n import styles from './Card.module.scss';\r\n import 'macro-css'\r\n \r\n"
+                },
+                {
+                    "date": 1757995706787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,9 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n-        <button className=\"button\" onClick={onClick}>\r\n-          <img width={11} height={11} src={plus} alt=\"Plus\" />\r\n-        </button>\r\n+          <img width={11} height={11} src={plus} alt=\"Plus\"  onClick={onClick} />\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757995732717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n-          <img width={11} height={11} src={plus} alt=\"Plus\"  onClick={onClick} />\r\n+          <img width={11} height={11} src={plus} alt=\"Plus\" onClick={onClick} />\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757995824884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n-          <img width={11} height={11} src={plus} alt=\"Plus\" onClick={onClick} />\r\n+          <img className={styles.plus} width={11} height={11} src={plus} alt=\"Plus\" onClick={onClick} />\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757995851031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n-          <img className={styles.plus} width={11} height={11} src={plus} alt=\"Plus\" onClick={onClick} />\r\n+          <img className={styles.plus} src={plus} alt=\"Plus\" onClick={onClick} />\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757995868373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,10 @@\n import styles from './Card.module.scss';\r\n import 'macro-css'\r\n \r\n function Card({title, price, imageUrl, onClick}) {\r\n+  const [isAdded, setIsAdded] = React.useState(false);\r\n+\r\n   return (\r\n     <div className={styles.card}>\r\n       <div className={styles.favorite}>\r\n         <img src={heartUnliked} alt=\"Unliked\" />\r\n"
+                },
+                {
+                    "date": 1757995900809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import plus from \"@/assets/btn-plus.svg\";\r\n+import plusImg from \"@/assets/btn-plus.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n import styles from './Card.module.scss';\r\n import 'macro-css'\r\n \r\n@@ -17,9 +17,9 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n-          <img className={styles.plus} src={plus} alt=\"Plus\" onClick={onClick} />\r\n+          <img className={styles.plus} src={isAdded ? plusImg : false} alt=\"Plus\" onClick={onClick} />\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757995943562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n-          <img className={styles.plus} src={isAdded ? plusImg : false} alt=\"Plus\" onClick={onClick} />\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757995955492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import styles from './Card.module.scss';\r\n import 'macro-css'\r\n \r\n function Card({title, price, imageUrl, onClick}) {\r\n-  const [isAdded, setIsAdded] = React.useState(false);\r\n+  // const [isAdded, setIsAdded] = React.useState(false);\r\n \r\n   return (\r\n     <div className={styles.card}>\r\n       <div className={styles.favorite}>\r\n@@ -17,8 +17,9 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n+          {/* <img className={styles.plus} src={isAdded ? plusImg : false} alt=\"Plus\" onClick={onClick} /> */}\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757995971249,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n import plusImg from \"@/assets/btn-plus.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n import styles from './Card.module.scss';\r\n import 'macro-css'\r\n+import React from 'react';\r\n \r\n+\r\n function Card({title, price, imageUrl, onClick}) {\r\n-  // const [isAdded, setIsAdded] = React.useState(false);\r\n+  const [isAdded, setIsAdded] = React.useState(false);\r\n \r\n   return (\r\n     <div className={styles.card}>\r\n       <div className={styles.favorite}>\r\n@@ -17,9 +19,9 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n-          {/* <img className={styles.plus} src={isAdded ? plusImg : false} alt=\"Plus\" onClick={onClick} /> */}\r\n+          <img className={styles.plus} src={isAdded ? plusImg : false} alt=\"Plus\" onClick={onClick} />\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757995993994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import plusImg from \"@/assets/btn-plus.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n import styles from './Card.module.scss';\r\n import 'macro-css'\r\n-import React from 'react';\r\n+import { useState } from 'react';\r\n \r\n \r\n function Card({title, price, imageUrl, onClick}) {\r\n   const [isAdded, setIsAdded] = React.useState(false);\r\n"
+                },
+                {
+                    "date": 1757996015608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import { useState } from 'react';\r\n \r\n \r\n function Card({title, price, imageUrl, onClick}) {\r\n-  const [isAdded, setIsAdded] = React.useState(false);\r\n+  const [isAdded, setIsAdded] = useState(false);\r\n \r\n   return (\r\n     <div className={styles.card}>\r\n       <div className={styles.favorite}>\r\n"
+                },
+                {
+                    "date": 1757996134898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import plusImg from \"@/assets/btn-plus.svg\";\r\n+import plusImg from \"@/assets/btn-checked.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n import styles from './Card.module.scss';\r\n import 'macro-css'\r\n import { useState } from 'react';\r\n"
+                },
+                {
+                    "date": 1757996148702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import plusImg from \"@/assets/btn-plus.svg\";\r\n-import plusImg from \"@/assets/btn-checked.svg\";\r\n+import checkedImg from \"@/assets/btn-checked.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n import styles from './Card.module.scss';\r\n import 'macro-css'\r\n import { useState } from 'react';\r\n@@ -20,9 +20,9 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n-          <img className={styles.plus} src={isAdded ? plusImg : false} alt=\"Plus\" onClick={onClick} />\r\n+          <img className={styles.plus} src={isAdded ? checkedImg : plusImg} alt=\"Plus\" onClick={onClick} />\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757996401906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,13 @@\n \r\n function Card({title, price, imageUrl, onClick}) {\r\n   const [isAdded, setIsAdded] = useState(false);\r\n \r\n+  const onClickPlus = () => {\r\n+    onPlus({ title, imageUrl, price });\r\n+    setIsAdded(!isAdded);\r\n+  };\r\n+\r\n   return (\r\n     <div className={styles.card}>\r\n       <div className={styles.favorite}>\r\n         <img src={heartUnliked} alt=\"Unliked\" />\r\n@@ -20,9 +25,9 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}</b>\r\n         </div>\r\n-          <img className={styles.plus} src={isAdded ? checkedImg : plusImg} alt=\"Plus\" onClick={onClick} />\r\n+          <img className={styles.plus} src={isAdded ? checkedImg : plusImg} alt=\"Plus\" onClick={onClickPlus} />\r\n       </div>\r\n     </div>\r\n   )\r\n }\r\n"
+                },
+                {
+                    "date": 1757996407144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n function Card({title, price, imageUrl, onClick}) {\r\n   const [isAdded, setIsAdded] = useState(false);\r\n \r\n   const onClickPlus = () => {\r\n-    onPlus({ title, imageUrl, price });\r\n+    // onPlus({ title, imageUrl, price });\r\n     setIsAdded(!isAdded);\r\n   };\r\n \r\n   return (\r\n"
+                },
+                {
+                    "date": 1758447721157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       <h5>{title}</h5>\r\n       <div className=\"d-flex justify-between align-center\">\r\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n-          <b>{price}</b>\r\n+          <b>{price}$</b>\r\n         </div>\r\n           <img className={styles.plus} src={isAdded ? checkedImg : plusImg} alt=\"Plus\" onClick={onClickPlus} />\r\n       </div>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1758648247739,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,12 @@\n import plusImg from \"@/assets/btn-plus.svg\";\r\n import checkedImg from \"@/assets/btn-checked.svg\";\r\n import heartUnliked from \"@/assets/heart.svg\";\r\n-import styles from './Card.module.scss';\r\n-import 'macro-css'\r\n-import { useState } from 'react';\r\n+import styles from \"./Card.module.scss\";\r\n+import \"macro-css\";\r\n+import { useState } from \"react\";\r\n \r\n-\r\n-function Card({title, price, imageUrl, onClick}) {\r\n+function Card({ onFavorite, title, price, imageUrl, onClick }) {\r\n   const [isAdded, setIsAdded] = useState(false);\r\n \r\n   const onClickPlus = () => {\r\n     // onPlus({ title, imageUrl, price });\r\n@@ -25,11 +24,16 @@\n         <div className=\"d-flex flex-column\">\r\n           <span>Price:</span>\r\n           <b>{price}$</b>\r\n         </div>\r\n-          <img className={styles.plus} src={isAdded ? checkedImg : plusImg} alt=\"Plus\" onClick={onClickPlus} />\r\n+        <img\r\n+          className={styles.plus}\r\n+          src={isAdded ? checkedImg : plusImg}\r\n+          alt=\"Plus\"\r\n+          onClick={onClickPlus}\r\n+        />\r\n\\ No newline at end of file\n       </div>\r\n     </div>\r\n-  )\r\n+  );\r\n }\r\n \r\n-export default Card;\n+export default Card;\r\n"
+                },
+                {
+                    "date": 1758648275594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import styles from \"./Card.module.scss\";\r\n import \"macro-css\";\r\n import { useState } from \"react\";\r\n \r\n-function Card({ onFavorite, title, price, imageUrl, onClick }) {\r\n+function Card({ title, price, imageUrl, onFavorite, onPlus, onClick }) {\r\n   const [isAdded, setIsAdded] = useState(false);\r\n \r\n   const onClickPlus = () => {\r\n     // onPlus({ title, imageUrl, price });\r\n@@ -35,5 +35,5 @@\n     </div>\r\n   );\r\n }\r\n \r\n-export default Card;\n\\ No newline at end of file\n+export default Card;\r\n"
+                },
+                {
+                    "date": 1758648328866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,10 @@\n   const [isAdded, setIsAdded] = useState(false);\r\n \r\n   const onClickPlus = () => {\r\n     // onPlus({ title, imageUrl, price });\r\n-    setIsAdded(!isAdded);\r\n+    onPlus();\r\n+    // setIsAdded(!isAdded);\r\n   };\r\n \r\n   return (\r\n     <div className={styles.card}>\r\n"
+                },
+                {
+                    "date": 1758648620224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,10 @@\n function Card({ title, price, imageUrl, onFavorite, onPlus, onClick }) {\r\n   const [isAdded, setIsAdded] = useState(false);\r\n \r\n   const onClickPlus = () => {\r\n-    // onPlus({ title, imageUrl, price });\r\n-    onPlus();\r\n-    // setIsAdded(!isAdded);\r\n+    onPlus({ title, imageUrl, price });\r\n+    setIsAdded(!isAdded);\r\n   };\r\n \r\n   return (\r\n     <div className={styles.card}>\r\n"
+                }
+            ],
+            "date": 1755840894409,
+            "name": "Commit-0",
+            "content": "import plus from \"@/assets/plus.svg\";\r\nimport heartUnliked from \"@/assets/heart.svg\";\r\n\r\nfunction Card(props) {\r\n  return (\r\n    <div className=\"card\">\r\n      <div className=\"favorite\">\r\n        <img src={heartUnliked} alt=\"Unliked\" />\r\n      </div>\r\n      <img width={133} height={112} src={props.imageUrl} alt=\"Sneakers\" />\r\n      <h5>{props.title}</h5>\r\n      <div className=\"d-flex justify-between align-center\">\r\n        <div className=\"d-flex flex-column\">\r\n          <span>Цена:</span>\r\n          <b>{props.price}</b>\r\n        </div>\r\n        <button className=\"button\" onClick={props.onClick}>\r\n          <img width={11} height={11} src={plus} alt=\"Plus\" />\r\n        </button>\r\n      </div>\r\n    </div>\r\n  )\r\n}\r\n\r\nexport default Card;"
+        }
+    ]
+}

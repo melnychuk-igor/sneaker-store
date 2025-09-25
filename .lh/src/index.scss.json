@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/index.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1755757224960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1755757896255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -180,8 +180,9 @@\n \n   &:hover {\n     // background: lighten(#9dd558, 5%);\n     background: color.lighten(#9dd558, 5%);\n+    background: color.adjust(#9dd558, $lightness: 5%);\n \n   }\n \n   &:active {\n"
+                },
+                {
+                    "date": 1755758139211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -179,9 +179,9 @@\n   transition: background 0.1s ease-in-out;\n \n   &:hover {\n     // background: lighten(#9dd558, 5%);\n-    background: color.lighten(#9dd558, 5%);\n+    // background: color.lighten(#9dd558, 5%);\n     background: color.adjust(#9dd558, $lightness: 5%);\n \n   }\n \n"
+                },
+                {
+                    "date": 1755758290006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,10 +178,8 @@\n   cursor: pointer;\n   transition: background 0.1s ease-in-out;\n \n   &:hover {\n-    // background: lighten(#9dd558, 5%);\n-    // background: color.lighten(#9dd558, 5%);\n     background: color.adjust(#9dd558, $lightness: 5%);\n \n   }\n \n"
+                },
+                {
+                    "date": 1757864682944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,42 +37,8 @@\n     margin: 0;\n   }\n }\n \n-.card {\n-  border: 1px solid #f3f3f3;\n-  padding: 30px;\n-  width: 220px;\n-  border-radius: 40px;\n-  margin-right: 30px;\n-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;\n-\n-  &:hover {\n-    box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.06);\n-    transform: translateY(-5px);\n-  }\n-\n-  .favorite {\n-    position: absolute;\n-    cursor: pointer;\n-  }\n-\n-  span {\n-    font-size: 13px;\n-    opacity: 0.5;\n-    text-transform: uppercase;\n-  }\n-\n-  b {\n-    font-size: 14px;\n-  }\n-\n-  h5 {\n-    font-weight: 400;\n-    font-size: 14px;\n-  }\n-}\n-\n .button {\n   background: #ffffff;\n   border: 1px solid #f2f2f2;\n   box-sizing: border-box;\n@@ -179,9 +145,8 @@\n   transition: background 0.1s ease-in-out;\n \n   &:hover {\n     background: color.adjust(#9dd558, $lightness: 5%);\n-\n   }\n \n   &:active {\n     background: color.adjust(#9dd558, $lightness: -5%);\n"
+                },
+                {
+                    "date": 1757995780937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,18 +37,8 @@\n     margin: 0;\n   }\n }\n \n-.button {\n-  background: #ffffff;\n-  border: 1px solid #f2f2f2;\n-  box-sizing: border-box;\n-  border-radius: 8px;\n-  height: 32px;\n-  width: 32px;\n-  cursor: pointer;\n-}\n-\n .search-block {\n   border: 1px solid #f3f3f3;\n   border-radius: 10px;\n   padding: 0 15px;\n"
+                }
+            ],
+            "date": 1755757224960,
+            "name": "Commit-0",
+            "content": "@use \"sass:color\";\n\nbody {\n  margin: 0;\n\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-color: #e7f6ff;\n}\n\n* {\n  font-family: 'Inter', system-ui;\n}\n\n.wrapper {\n  background: #ffffff;\n  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);\n  border-radius: 20px;\n  max-width: 1080px;\n  margin: 50px auto;\n}\n\nheader {\n  border-bottom: 1px solid #eaeaea;\n  img {\n    margin-right: 15px;\n  }\n\n  h3,\n  p {\n    margin: 0;\n  }\n}\n\n.content {\n  h1 {\n    margin: 0;\n  }\n}\n\n.card {\n  border: 1px solid #f3f3f3;\n  padding: 30px;\n  width: 220px;\n  border-radius: 40px;\n  margin-right: 30px;\n  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;\n\n  &:hover {\n    box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.06);\n    transform: translateY(-5px);\n  }\n\n  .favorite {\n    position: absolute;\n    cursor: pointer;\n  }\n\n  span {\n    font-size: 13px;\n    opacity: 0.5;\n    text-transform: uppercase;\n  }\n\n  b {\n    font-size: 14px;\n  }\n\n  h5 {\n    font-weight: 400;\n    font-size: 14px;\n  }\n}\n\n.button {\n  background: #ffffff;\n  border: 1px solid #f2f2f2;\n  box-sizing: border-box;\n  border-radius: 8px;\n  height: 32px;\n  width: 32px;\n  cursor: pointer;\n}\n\n.search-block {\n  border: 1px solid #f3f3f3;\n  border-radius: 10px;\n  padding: 0 15px;\n\n  input {\n    border: 0;\n    padding: 13px;\n    font-size: 16px;\n    width: 200px;\n  }\n}\n\n.overlay {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 1;\n}\n\n.drawer {\n  display: flex;\n  flex-direction: column;\n  position: absolute;\n  width: 420px;\n  height: 100%;\n  right: 0;\n  background: #ffffff;\n  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);\n  padding: 30px;\n\n  .items {\n    flex: 1;\n    overflow: auto;\n    margin-bottom: 40px;\n  }\n\n  h2 {\n    margin: 0;\n  }\n}\n\n.cartTotalBlock {\n  ul {\n    display: block;\n    margin-bottom: 40px !important;\n\n    li {\n      display: flex;\n      align-items: flex-end;\n      margin-bottom: 20px;\n\n      div {\n        flex: 1;\n        height: 1px;\n        border-bottom: 1px dashed #dfdfdf;\n        position: relative;\n        top: -4px;\n        margin: 0 7px;\n      }\n    }\n  }\n\n  .greenButton {\n    position: relative;\n\n    &:hover {\n      img {\n        transform: translateX(5px);\n      }\n    }\n\n    img {\n      position: absolute;\n      right: 30px;\n      top: 20px;\n      transition: transform 0.15s ease-in-out;\n    }\n  }\n}\n\n.greenButton {\n  width: 100%;\n  height: 55px;\n  background: #9dd558;\n  border-radius: 18px;\n  border: 0;\n  color: #fff;\n  font-size: 16px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: background 0.1s ease-in-out;\n\n  &:hover {\n    // background: lighten(#9dd558, 5%);\n    background: color.lighten(#9dd558, 5%);\n\n  }\n\n  &:active {\n    background: color.adjust(#9dd558, $lightness: -5%);\n    }\n}\n\n.cartItem {\n  border: 1px solid #f3f3f3;\n  border-radius: 20px;\n  overflow: hidden;\n  padding: 20px;\n\n  .cartItemImg {\n    height: 70px;\n    width: 70px;\n    background-size: contain;\n    background-position: 0 -3px;\n    background-repeat: no-repeat;\n    margin-right: 20px;\n  }\n\n  p {\n    font-size: 16px;\n    margin: 0;\n  }\n\n  b {\n    font-size: 14px;\n  }\n\n  .removeBtn {\n    opacity: 0.5;\n    cursor: pointer;\n    transition: opacity 0.15s ease-in-out;\n\n    &:hover {\n      opacity: 1;\n    }\n  }\n}"
+        }
+    ]
+}
