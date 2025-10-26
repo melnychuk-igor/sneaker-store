@@ -1,5 +1,5 @@
-import { useContext  } from "react";
-import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import "macro-css";
 
@@ -8,7 +8,7 @@ import heartImg from "@/assets/heart.svg";
 import cartImg from "@/assets/cart.svg";
 import userImg from "@/assets/user.svg";
 
-import {AppContext} from '../App';
+import { AppContext } from "../App";
 
 function Header({ onClickCart }) {
   const { cartItems } = useContext(AppContext);
@@ -17,13 +17,13 @@ function Header({ onClickCart }) {
   return (
     <header className="d-flex justify-between align-center p-40">
       <Link to="/">
-      <div className="d-flex align-center">
-        <img width={40} height={40} src={logoImg} alt="Logotype" />
-        <div>
-          <h3 className="text-uppercase">React Sneakers</h3>
-          <p className="opacity-5">The best sneakers store</p>
+        <div className="d-flex align-center">
+          <img width={40} height={40} src={logoImg} alt="Logotype" />
+          <div>
+            <h3 className="text-uppercase">React Sneakers</h3>
+            <p className="opacity-5">The best sneakers store</p>
+          </div>
         </div>
-      </div>
       </Link>
       <ul className="d-flex">
         <li onClick={onClickCart} className="mr-30 cu-p">
@@ -36,7 +36,9 @@ function Header({ onClickCart }) {
           </Link>
         </li>
         <li>
-          <img width={18} height={18} src={userImg} alt="User" />
+          <Link to="/orders">
+            <img width={18} height={18} src={userImg} alt="User" />
+          </Link>
         </li>
       </ul>
     </header>

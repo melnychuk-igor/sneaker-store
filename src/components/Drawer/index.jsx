@@ -3,17 +3,20 @@ import axios from "axios";
 
 import Info from "@/components/Info";
 
+import styles from "./Drawer.module.scss";
+
 import btnRemoveImg from "@/assets/btn-remove.svg";
 import arrowImg from "@/assets/arrow.svg";
 import emptyCartImg from "@/assets/empty-cart.jpg";
 import completeOrderImg from "@/assets/complete-order.jpg";
 
 import { AppContext } from "../../App";
+import { useCart } from "../../hooks/useCart";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer({ items = [], onClose, onRemove }) {
-  const { cartItems, setCartItems } = useContext(AppContext);
+  const { cartItems, setCartItems, totalPrice } = useCart();
   const [orderId, setOrderId] = useState(null);
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +35,9 @@ function Drawer({ items = [], onClose, onRemove }) {
 
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
-        await axios.delete('https://68cfd717ec1a5ff33825ad56.mockapi.io/cart/' + item.id);
+        await axios.delete(
+          "https://68cfd717ec1a5ff33825ad56.mockapi.io/cart/" + item.id
+        );
         await delay(1000);
       }
     } catch (error) {
@@ -56,7 +61,7 @@ function Drawer({ items = [], onClose, onRemove }) {
 
         {items.length > 0 ? (
           <div className="d-flex flex-column flex">
-            <div className="items">
+            <div className="items flex">
               {items.map((obj) => (
                 <div
                   className="cartItem d-flex align-center"
@@ -99,12 +104,12 @@ function Drawer({ items = [], onClose, onRemove }) {
             <li>
               <span>Total:</span>
               <div></div>
-              <b>$239</b>
+              <b>{totalPrice}$</b>
             </li>
             <li>
               <span>Tax 5%:</span>
               <div></div>
-              <b>$12</b>
+              <b>{((totalPrice / 100) * 5).toFixed(2)}$</b>
             </li>
           </ul>
           <button

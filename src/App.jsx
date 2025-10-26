@@ -9,6 +9,7 @@ import Header from "@/components/Header";
 import Drawer from "@/components/Drawer";
 import Home from "@/pages/Home";
 import Favorites from "@/pages/Favorites";
+import Orders from "@/pages/Orders";
 
 export const AppContext = createContext({});
 
@@ -141,6 +142,13 @@ function App() {
             exact
             element={
               <Favorites onAddToFavorite={onAddToFavorite} />
+            }
+          />
+          <Route
+            path="/orders"
+            exact
+            element={
+              <Orders/>
             }
           />
         </Routes>
