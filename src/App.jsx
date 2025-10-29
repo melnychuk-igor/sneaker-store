@@ -22,72 +22,90 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const cartsResponse = await axios.get(
-        "https://68cfd717ec1a5ff33825ad56.mockapi.io/cart"
-      );
-      const itemsResponse = await axios.get(
-        "https://68cfd717ec1a5ff33825ad56.mockapi.io/items"
-      );
+      try {
+        const [cartResponse, itemsResponse] = await Promise.all([
+          axios.get("https://68cfd717ec1a5ff33825ad56.mockapi.io/cart"),
+          axios.get("https://68cfd717ec1a5ff33825ad56.mockapi.io/items"),
+        ]);
 
-      setIsLoading(false);
-      setItems(itemsResponse.data);
-      setCartItems(cartsResponse.data);
+        setIsLoading(false);
+        setItems(itemsResponse.data);
+        setCartItems(cartResponse.data);
+      } catch (error) {
+        alert("Ошибка при запросе данных ;(");
+        console.error(error);
+      }
     }
 
     fetchData();
   }, []);
 
-  const onAddToCart = (obj) => {
+  const onAddToCart = async (obj) => {
     const existingItem = cartItems.find(
       (item) => String(item.customId) === String(obj.customId)
     );
 
     if (existingItem) {
-      axios.delete(
-        `https://68cfd717ec1a5ff33825ad56.mockapi.io/cart/${existingItem.id}`
-      );
       setCartItems((prev) =>
         prev.filter((item) => String(item.customId) !== String(obj.customId))
       );
+      await axios.delete(
+        `https://68cfd717ec1a5ff33825ad56.mockapi.io/cart/${existingItem.id}`
+      );
     } else {
-      axios.post("https://68cfd717ec1a5ff33825ad56.mockapi.io/cart", obj);
       setCartItems((prev) => [...prev, obj]);
+      const { data } = await axios.post(
+        "https://68cfd717ec1a5ff33825ad56.mockapi.io/cart",
+        obj
+      );
+      // setCartItems((prev) =>
+      //   prev.map((item) => {
+      //     if (item.customId === data.customId) {
+      //       return {
+      //         ...item,
+      //         id: data.id,
+      //       };
+      //     }
+      //     return item;
+      //   }),
+      // );
     }
   };
 
   const onRemoveItem = (customId) => {
-    const itemToRemove = cartItems.find((item) => item.customId === customId);
-
-    if (itemToRemove) {
-      axios.delete(
-        `https://68cfd717ec1a5ff33825ad56.mockapi.io/cart/${itemToRemove.id}`
-      );
+    try {
+      const itemToRemove = cartItems.find((item) => item.customId === customId);
+      if (itemToRemove) {
+        axios.delete(
+          `https://68cfd717ec1a5ff33825ad56.mockapi.io/cart/${itemToRemove.id}`
+        );
+      }
+      setCartItems((prev) => prev.filter((item) => item.customId !== customId));
+    } catch (error) {
+      alert("Error deleting from cart");
+      console.error(error);
     }
-
-    setCartItems((prev) => prev.filter((item) => item.customId !== customId));
   };
 
   const onAddToFavorite = async ({ customId, favorite }) => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.customId === customId ? { ...item, favorite } : item
-      )
-    );
-  
     try {
-      const serverItem = items.find((item) => String(item.customId) === String(customId));
+      setItems((prev) =>
+        prev.map((item) =>
+          item.customId === customId ? { ...item, favorite } : item
+        )
+      );
+
+      const serverItem = items.find(
+        (item) => String(item.customId) === String(customId)
+      );
       const serverId = serverItem?.id;
-  
-      if (!serverId) {
-        console.warn("❌ Missing serverId for", customId, serverItem);
-        return;
-      }
-    
+
       await axios.put(
         `https://68cfd717ec1a5ff33825ad56.mockapi.io/items/${String(serverId)}`,
-        { favorite: favorite },
+        { favorite: favorite }
       );
     } catch (error) {
+      alert("Failed to add to favorites");
       console.error("Update error:", error);
     }
   };
@@ -96,28 +114,28 @@ function App() {
     setSearchValue(event.target.value);
   };
 
-  const isItemAdded = (id) => {
-    return cartItems.some((obj) => obj.id === id);
+  const isItemAdded = (customId) => {
+    return cartItems.some((obj) => obj.customId === customId);
   };
 
   return (
     <AppContext.Provider
-    value={{
-      items,
-      cartItems,
-      isItemAdded,
-      onAddToFavorite,
-      setCartOpened,
-      setCartItems,
-    }}>
+      value={{
+        items,
+        cartItems,
+        isItemAdded,
+        onAddToFavorite,
+        setCartOpened,
+        setCartItems,
+      }}
+    >
       <div className="wrapper clear">
-        {cartOpened && (
-          <Drawer
-            items={cartItems}
-            onClose={() => setCartOpened(false)}
-            onRemove={onRemoveItem}
-          />
-        )}
+        <Drawer
+          items={cartItems}
+          onClose={() => setCartOpened(false)}
+          onRemove={onRemoveItem}
+          opened={cartOpened}
+        />
 
         <Header onClickCart={() => setCartOpened(true)} />
 
@@ -132,6 +150,7 @@ function App() {
                 searchValue={searchValue}
                 setSearchValue={setSearchValue}
                 onChangeSearchInput={onChangeSearchInput}
+                onAddToFavorite={onAddToFavorite}
                 onAddToCart={onAddToCart}
                 isLoading={isLoading}
               />
@@ -140,17 +159,9 @@ function App() {
           <Route
             path="/favorites"
             exact
-            element={
-              <Favorites onAddToFavorite={onAddToFavorite} />
-            }
+            element={<Favorites onAddToFavorite={onAddToFavorite} />}
           />
-          <Route
-            path="/orders"
-            exact
-            element={
-              <Orders/>
-            }
-          />
+          <Route path="/orders" exact element={<Orders />} />
         </Routes>
       </div>
     </AppContext.Provider>

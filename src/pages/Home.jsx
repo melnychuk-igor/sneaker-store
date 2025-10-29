@@ -9,6 +9,7 @@ function Home({
   searchValue,
   setSearchValue,
   onChangeSearchInput,
+  onAddToFavorite,
   onAddToCart,
   isLoading,
 }) {
@@ -20,6 +21,7 @@ function Home({
     return (isLoading ? [...Array(8)] : filtredItems).map((item, index) => (
       <Card
         key={isLoading ? `skeleton-${index}` : item.customId}
+        onFavorite={(obj) => onAddToFavorite(obj)}
         onPlus={(obj) => onAddToCart(obj)}
         added={cartItems.some(
           (obj) => String(obj.customId) === String(item?.customId)

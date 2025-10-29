@@ -25,8 +25,8 @@ function Header({ onClickCart }) {
           </div>
         </div>
       </Link>
-      <ul className="d-flex">
-        <li onClick={onClickCart} className="mr-30 cu-p">
+      <ul className="d-flex align-center">
+        <li onClick={onClickCart} className="mr-30 cu-p d-flex align-center">
           <img width={18} height={18} src={cartImg} alt="Cart" />
           <span>{totalPrice}$</span>
         </li>

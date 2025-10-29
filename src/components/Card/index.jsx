@@ -1,4 +1,4 @@
-import { useState, useContext  } from "react";
+import { useState, useContext } from "react";
 import ContentLoader from "react-content-loader";
 
 import styles from "./Card.module.scss";
@@ -9,7 +9,7 @@ import checkedImg from "@/assets/btn-checked.svg";
 import heartLiked from "@/assets/heart-liked.svg";
 import heartUnliked from "@/assets/heart.svg";
 
-import {AppContext} from '../../App';
+import { AppContext } from "../../App";
 
 function Card({
   id,
@@ -18,11 +18,12 @@ function Card({
   price,
   imageUrl,
   favorite,
+  onFavorite,
   onPlus,
   added = false,
   loading = false,
 }) {
-  const {isItemAdded, onAddToFavorite } = useContext(AppContext);
+  const { isItemAdded } = useContext(AppContext);
   const [isAdded, setIsAdded] = useState(added);
 
   const onClickPlus = () => {
@@ -32,7 +33,7 @@ function Card({
   };
 
   const onClickFavorite = () => {
-    onAddToFavorite({ id, customId, favorite: !favorite });
+    onFavorite({ id, customId, favorite: !favorite });
   };
 
   return (
@@ -44,7 +45,8 @@ function Card({
           height={250}
           viewBox="0 0 155 265"
           backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb">
+          foregroundColor="#ecebeb"
+        >
           <rect x="1" y="0" rx="10" ry="10" width="155" height="155" />
           <rect x="0" y="167" rx="5" ry="5" width="155" height="15" />
           <rect x="0" y="187" rx="5" ry="5" width="100" height="15" />
@@ -53,9 +55,12 @@ function Card({
         </ContentLoader>
       ) : (
         <>
-          <div className={styles.favorite} onClick={onClickFavorite}>
-            <img src={favorite ? heartLiked : heartUnliked} alt="Unliked" />
-          </div>
+          {onFavorite && (
+            <div className={styles.favorite} onClick={onClickFavorite}>
+              {/* <img src={heartUnliked} alt="Unliked" /> */}
+              <img src={favorite ? heartLiked : heartUnliked} alt="Unliked" />
+            </div>
+          )}
           <img width="100%" height={135} src={imageUrl} alt="Sneakers" />
           <h5>{title}</h5>
           <div className="d-flex justify-between align-center">
@@ -63,12 +68,14 @@ function Card({
               <span>Price:</span>
               <b>{price}$</b>
             </div>
-            <img
-              className={styles.plus}
-              onClick={onClickPlus}
-              src={isItemAdded(id) ? checkedImg : plusImg}
-              alt="Plus"
-            />
+            {onPlus && (
+              <img
+                className={styles.plus}
+                onClick={onClickPlus}
+                src={isItemAdded(customId) ? checkedImg : plusImg}
+                alt="Plus"
+              />
+            )}
           </div>
         </>
       )}
